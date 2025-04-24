@@ -21,7 +21,7 @@ jobs:
           distribution: temurin
           
       - name: Compile Java
-        run: javac SimpleTask.java
+        run: javac SampleTask.java
 
       - name: Run Java
-        run: java SimpleTask
+        run: java SampleTask
