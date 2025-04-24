@@ -1,0 +1,31 @@
+name: sample
+
+on: 
+push:
+branches: [ "main" ]
+pull_request: main
+
+jobs:
+build:
+run on: ubuntu-latest
+
+steps:
+-name: checkout code
+uses: actions/checkout@v3
+
+-name: set up java
+uses: action/setup-java@v3
+with:
+java-version: 17
+distribution: temurin
+
+-name: compile java
+uses: javac SampleTask.java
+
+-name: run java
+uses: java SampleTask
+
+
+
+
+
