@@ -1,27 +1,21 @@
-name: sample
+ name: example-install-command 
+ on:
+   push:
+     branches:
+      - 'master'
+   pull_request:
+   workflow_dispatch:
 
-on: 
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
+ jobs:
+  install-command:
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Custom Yarn command
+        uses: ./
         with:
-          java-version: 17
-          distribution: temurin
-          
-      - name: Compile Java
-        run: javac SampleTask.java
-
-      - name: Run Java
-        run: java SampleTask
+          working-directory: examples/install-command
+          # https://classic.yarnpkg.com/en/docs/cli/install
+          install-command: yarn --frozen-lockfile --silent
